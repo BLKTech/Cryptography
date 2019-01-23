@@ -1,5 +1,4 @@
 <?php
-
 /*
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,10 +15,14 @@
 
 namespace BLKTech\Cryptography;
 use BLKTech\FileSystem\File;
+use BLKTech\Cryptography\Exception\InvalidHashValueException;
+use BLKTech\Cryptography\Exception\HashAlgorithmCalcException;
+use BLKTech\Cryptography\Exception\HashAlgorithmNotFoundException;
 /**
  *
- * @author The Blankis < blankitoracing@gmail.com >
+ * @author TheKito < blankitoracing@gmail.com >
  */
+
 class Hash
 {
     public static function getAlgorithms()
@@ -90,6 +93,12 @@ class Hash
         return strlen($hashValue) == strlen($this->example);
     }
     
+    public function validateHash($hashValue)
+    {        
+        if(!$this->checkHash($hashValue))
+            throw new InvalidHashValueException($hashValue);
+    }
+
     function getName()
     {
         return $this->name;
