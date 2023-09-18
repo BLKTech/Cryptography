@@ -19,7 +19,7 @@ namespace BLKTech\Cryptography\Exception;
  *
  * @author TheKito < blankitoracing@gmail.com >
  */
- 
-class Exception extends \BLKTech\Cryptography\Exception {
 
+class Exception extends \BLKTech\Cryptography\Exception
+{
 }

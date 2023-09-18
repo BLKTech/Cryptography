@@ -19,7 +19,7 @@ namespace BLKTech\Cryptography\Exception;
  *
  * @author TheKito < blankitoracing@gmail.com >
  */
- 
-class InvalidHashValueException extends Exception {
 
+class InvalidHashValueException extends Exception
+{
 }

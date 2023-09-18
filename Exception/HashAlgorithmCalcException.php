@@ -19,7 +19,7 @@ namespace BLKTech\Cryptography\Exception;
  *
  * @author TheKito < blankitoracing@gmail.com >
  */
- 
-class HashAlgorithmCalcException extends Exception {
 
+class HashAlgorithmCalcException extends Exception
+{
 }

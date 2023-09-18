@@ -14,10 +14,12 @@
  */
 
 namespace BLKTech\Cryptography;
+
 use BLKTech\FileSystem\File;
 use BLKTech\Cryptography\Exception\InvalidHashValueException;
 use BLKTech\Cryptography\Exception\HashAlgorithmCalcException;
 use BLKTech\Cryptography\Exception\HashAlgorithmNotFoundException;
+
 /**
  *
  * @author TheKito < blankitoracing@gmail.com >
@@ -29,19 +31,21 @@ class Hash
     {
         return hash_algos();
     }
-    
+
     public static function getAlgorithm($name)
     {
         $lowerName = strtolower($name);
-        
+
         static $_ = null;
-        
-        if($_===null)
+
+        if($_===null) {
             $_ = array();
-        
-        if(!isset($_[$lowerName]))
-            $_[$lowerName] = new Hash ($lowerName);
-                        
+        }
+
+        if(!isset($_[$lowerName])) {
+            $_[$lowerName] = new Hash($lowerName);
+        }
+
         return $_[$lowerName];
     }
 
@@ -51,55 +55,59 @@ class Hash
     private function __construct($name)
     {
         $this->name = $name;
-        
-        if(!in_array($this->name, self::getAlgorithms()))
+
+        if(!in_array($this->name, self::getAlgorithms())) {
             throw new HashAlgorithmNotFoundException($this->name);
-            
+        }
+
         $this->example = $this->calc('');
     }
 
     public function calc($data)
-    {        
+    {
         $t = hash($this->name, $data);
-        
-        if($t===false)
+
+        if($t===false) {
             throw new HashAlgorithmCalcException($data);
-        
+        }
+
         return strtoupper($t);
     }
-    
+
     public function calcFile(File $file)
     {
         $t = hash_file($this->name, $file->__toString());
-        
-        if($t===false)
-            throw new HashAlgorithmCalcException ($file->__toString());
-        
+
+        if($t===false) {
+            throw new HashAlgorithmCalcException($file->__toString());
+        }
+
         return strtoupper($t);
     }
-    
-    public function check($hashValue,$data)
+
+    public function check($hashValue, $data)
     {
-        return $this->calc($data) == strtoupper($hashValue);        
+        return $this->calc($data) == strtoupper($hashValue);
     }
 
     public function checkFile($hashValue, File $file)
     {
-        return $this->calcFile($file) == strtoupper($hashValue);        
+        return $this->calcFile($file) == strtoupper($hashValue);
     }
 
     public function checkHash($hashValue)
     {
         return strlen($hashValue) == strlen($this->example);
     }
-    
+
     public function validateHash($hashValue)
-    {        
-        if(!$this->checkHash($hashValue))
+    {
+        if(!$this->checkHash($hashValue)) {
             throw new InvalidHashValueException($hashValue);
+        }
     }
 
-    function getName()
+    public function getName()
     {
         return $this->name;
     }

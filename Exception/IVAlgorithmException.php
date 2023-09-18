@@ -19,7 +19,7 @@ namespace BLKTech\Cryptography\Exception;
  *
  * @author TheKito < blankitoracing@gmail.com >
  */
- 
-class IVAlgorithmException extends Exception {
 
+class IVAlgorithmException extends Exception
+{
 }

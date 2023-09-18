@@ -19,7 +19,7 @@ namespace BLKTech\Cryptography\Exception;
  *
  * @author TheKito < blankitoracing@gmail.com >
  */
- 
-class HashAlgorithmNotFoundException extends Exception {
 
+class HashAlgorithmNotFoundException extends Exception
+{
 }
