@@ -38,7 +38,7 @@ class Hash
 
         static $_ = null;
 
-        if($_===null) {
+        if($_ === null) {
             $_ = array();
         }
 
@@ -67,7 +67,7 @@ class Hash
     {
         $t = hash($this->name, $data);
 
-        if($t===false) {
+        if($t === false) {
             throw new HashAlgorithmCalcException($data);
         }
 
@@ -78,7 +78,7 @@ class Hash
     {
         $t = hash_file($this->name, $file->__toString());
 
-        if($t===false) {
+        if($t === false) {
             throw new HashAlgorithmCalcException($file->__toString());
         }
 

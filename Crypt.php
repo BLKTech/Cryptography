@@ -26,17 +26,17 @@ class Crypt
     {
         static $ciphers = null;
 
-        if($ciphers===null) {
+        if($ciphers === null) {
             $ciphers = openssl_get_cipher_methods();
 
             //ECB mode should be avoided
-            $ciphers = array_filter($ciphers, function ($n) { return stripos($n, "ecb")===false; });
+            $ciphers = array_filter($ciphers, function ($n) { return stripos($n, "ecb") === false; });
 
             //At least as early as Aug 2016, Openssl declared the following weak: RC2, RC4, DES, 3DES, MD5 based
-            $ciphers = array_filter($ciphers, function ($c) { return stripos($c, "des")===false; });
-            $ciphers = array_filter($ciphers, function ($c) { return stripos($c, "rc2")===false; });
-            $ciphers = array_filter($ciphers, function ($c) { return stripos($c, "rc4")===false; });
-            $ciphers = array_filter($ciphers, function ($c) { return stripos($c, "md5")===false; });
+            $ciphers = array_filter($ciphers, function ($c) { return stripos($c, "des") === false; });
+            $ciphers = array_filter($ciphers, function ($c) { return stripos($c, "rc2") === false; });
+            $ciphers = array_filter($ciphers, function ($c) { return stripos($c, "rc4") === false; });
+            $ciphers = array_filter($ciphers, function ($c) { return stripos($c, "md5") === false; });
         }
 
         return $ciphers;
@@ -47,7 +47,7 @@ class Crypt
 
         static $_ = null;
 
-        if($_===null) {
+        if($_ === null) {
             $_ = array();
         }
 
@@ -69,7 +69,7 @@ class Crypt
         }
 
         $this->ivLength = openssl_cipher_iv_length($this->method);
-        if($this->ivLength===false) {
+        if($this->ivLength === false) {
             throw new IVAlgorithmException($this->method);
         }
     }
